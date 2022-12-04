@@ -61,9 +61,6 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PG_PASSWORD: kong
-    volumes:
-      - ./kong_tmp_vol:/tmp
-      - ./config:/opt/kong
     networks:
       - kong-net
     ports:
@@ -93,8 +90,6 @@ services:
       timeout: 30s
       retries: 3
     restart: on-failure
-    volumes:
-      - ./data/postgres/kong:/var/lib/postgresql/data
     deploy:
       restart_policy:
         condition: on-failure
